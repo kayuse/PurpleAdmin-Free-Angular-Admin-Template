@@ -34,7 +34,6 @@ export class LoginComponent implements OnInit {
   }
   async login() {
     let result = await this.authService.authenticate(this.email, this.password)
-    console.log(result)
     if (result) {
       this.router.navigate(['/dashboard'])
     }

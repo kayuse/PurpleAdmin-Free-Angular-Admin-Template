@@ -20,6 +20,8 @@ import { ContentAnimateDirective } from './shared/directives/content-animate.dir
 import { TodoListComponent } from './apps/todo-list/todo-list.component';
 import { AuthGuardService } from './services/auth-guard.service';
 import { AuthService } from './services/auth.service';
+import { HttpService } from './services/http.service';
+import { UserService } from './services/user.service';
 
 @NgModule({
   declarations: [
@@ -43,7 +45,7 @@ import { AuthService } from './services/auth.service';
     ReactiveFormsModule,
     ChartsModule
   ],
-  providers: [ThemeService,AuthGuardService,AuthService],
+  providers: [ThemeService, AuthGuardService, AuthService, HttpService,UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

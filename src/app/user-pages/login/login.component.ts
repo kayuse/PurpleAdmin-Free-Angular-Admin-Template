@@ -12,15 +12,7 @@ export class LoginComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    const user: User = {
-      name: '',
-      email: 'string',
-      avatar: 'string',
-      email_verified_at: 'string',
-      created_at: 'string',
-      updated_at: 'string',
-      api_token: 'string'
-    }
+  
   }
 
 }

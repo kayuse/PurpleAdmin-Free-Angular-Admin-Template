@@ -10,10 +10,14 @@ export class AuthService {
     // ...
     public isAuthenticated(): boolean {
         const token = localStorage.getItem('token');
-        if (token == null) {
+        if (token == null || token == 'null') {
+            console.log(false)
             return false
         }
         return true
+    }
+    logout() {
+        localStorage.setItem('token', null)
     }
     public async authenticate(email, password): Promise<boolean> {
         let result = false
