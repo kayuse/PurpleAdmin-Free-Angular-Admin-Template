@@ -33,7 +33,7 @@ import { UserService } from './services/user.service';
     TodoListComponent,
     TodoComponent,
     SpinnerComponent,
-    ContentAnimateDirective
+    ContentAnimateDirective,
   ],
   imports: [
     BrowserModule,
@@ -45,7 +45,7 @@ import { UserService } from './services/user.service';
     ReactiveFormsModule,
     ChartsModule
   ],
-  providers: [ThemeService, AuthGuardService, AuthService, HttpService,UserService],
+  providers: [ThemeService, AuthGuardService, AuthService, HttpService, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
