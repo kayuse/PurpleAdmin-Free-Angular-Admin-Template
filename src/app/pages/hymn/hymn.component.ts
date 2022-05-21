@@ -2,6 +2,7 @@ import { HttpParams } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { Hymn } from 'src/app/model/hymn.model';
 import { HymnService } from 'src/app/services/hymn.service';
 import { URLSearchParams } from 'url';
@@ -21,14 +22,15 @@ export class HymnComponent implements OnInit {
   public filterYoruba: boolean = true
   public content: string = ''
   public hymns: Array<Hymn>
-  constructor(private hymnService: HymnService, private router: Router) {
+  constructor(private hymnService: HymnService, private router: Router, private spinner: NgxSpinnerService,) {
 
   }
 
   async ngOnInit() {
+    this.spinner.show()
     this.hymns = await this.hymnService.all()
     this.filteredHymns = this.hymns.filter(hymn => hymn.id < 100)
-
+    this.spinner.hide()
   }
   async search() {
     let params = this.computeSearch()

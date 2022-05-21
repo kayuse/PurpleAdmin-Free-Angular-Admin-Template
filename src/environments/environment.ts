@@ -3,9 +3,10 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false,
-  baseUrl: 'http://localhost:8000/api/'
-};
+    production: true,
+    baseUrl: 'https://ecwamedia.ilanaa.co/api/'
+  };
+  
 
 /*
  * For easier debugging in development mode, you can import the following file

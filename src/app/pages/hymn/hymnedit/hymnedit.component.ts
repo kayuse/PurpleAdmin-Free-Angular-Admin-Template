@@ -30,9 +30,11 @@ export class HymneditComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.spinner.show()
     this.activatedRoute.params.subscribe(params => {
       this.id = params['id']
       this.getHymn()
+
     })
   }
   addVerse() {
@@ -86,6 +88,7 @@ export class HymneditComponent implements OnInit {
   async getHymn() {
     this.hymn = await this.hymnService.get(this.id)
     this.chorus = this.hymn.chorus
+    this.spinner.hide()
   }
   getErrors() {
     return this.errors.toString()
