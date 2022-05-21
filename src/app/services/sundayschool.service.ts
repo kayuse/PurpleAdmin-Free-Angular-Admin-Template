@@ -5,7 +5,7 @@ import { AppSessionStore } from '../state/app/session.store';
 import { AuthService } from './auth.service';
 import { HttpService } from './http.service';
 @Injectable()
-export class HymnService {
+export class SundayService {
     constructor(private httpService: HttpService) { }
     // ...
     public async get(id: number): Promise<Hymn> {

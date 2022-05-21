@@ -9,24 +9,29 @@ import { DashboardComponent } from '../dashboard/dashboard.component';
 import { AuthGuardService } from '../services/auth-guard.service';
 import { HymnComponent } from './hymn/hymn.component';
 import { HymnService } from '../services/hymn.service';
+import { QuillModule } from 'ngx-quill'
 import { HymneditComponent } from './hymn/hymnedit/hymnedit.component';
+import { HymnNewComponent } from './hymn/hymn-new/hymn-new.component';
+import { SundaySchoolComponent } from './sunday-school/sunday-school.component';
 
 const routes: Routes = [
   { path: '', component: DashboardComponent, canActivate: [AuthGuardService] },
   { path: 'hymns', component: HymnComponent, canActivate: [AuthGuardService] },
+  { path: 'hymns/new', component: HymnNewComponent, canActivate: [AuthGuardService] },
   { path: 'hymn/edit/:id', component: HymneditComponent, canActivate: [AuthGuardService] },
   { path: 'login', component: LoginComponent },
 ]
 
 @NgModule({
-  declarations: [LoginComponent,HymnComponent,HymneditComponent],
+  declarations: [LoginComponent, HymnComponent, HymneditComponent, HymnNewComponent, SundaySchoolComponent],
   imports: [
     CommonModule,
     FormsModule,
     NgbModule,
     ReactiveFormsModule,
+    QuillModule.forRoot(),
     RouterModule.forChild(routes)
   ],
-  providers:[AuthService, HymnService]
+  providers: [AuthService, HymnService]
 })
 export class PagesModule { }

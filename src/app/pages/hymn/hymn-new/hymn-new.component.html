@@ -1,0 +1,79 @@
+<div class="page-header">
+    <h3 class="page-title">
+    Add Hymn
+    </h3>
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="javascript:;">Hymn</a></li>
+        <li class="breadcrumb-item active" aria-current="page">{{ hymn.id }}</li>
+        <li class="breadcrumb-item active" aria-current="page">{{ hymn.title }}</li>
+      </ol>
+    </nav>
+  </div>
+  <div class="row">
+    <div class="col-12 grid-margin">
+      <div role="alert" class="alert alert-fill-danger" *ngIf="showError"><i class="mdi mdi-information-outline"></i>
+        {{getErrors()}}</div>
+    </div>
+    <div class="col-12 grid-margin stretch-card">
+  
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">New Hymn</h4>
+          <p class="card-description">
+            {{ hymn.title }}
+          </p>
+          <form class="forms-sample">
+            <div class="form-group">
+              <label for="exampleInputName1">Title</label>
+              <input type="text" class="form-control" [(ngModel)]="hymn.title" name="hymn.title" id="title"
+                placeholder="Title">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputEmail3">Number</label>
+              <input type="text" class="form-control" [(ngModel)]="hymn.number" name="hymn.number" id="number"
+                placeholder="Hymn Number">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputPassword4">Extra</label>
+              <input type="text" class="form-control" [(ngModel)]="hymn.extra" name="hymn.extra" id="extra"
+                placeholder="Extra">
+            </div>
+            <div class="form-group" >
+              <label for="chorus">Chorus</label>
+              <quill-editor placeholder="Enter Text" [styles]="{height:'200px'}" [(ngModel)]="hymn.chorus"
+                name="hymn.chorus">
+              </quill-editor>
+            </div>
+  
+            <div class="form-group">
+              <label for="exampleSelectGender">Language</label>
+              <select class="form-control" id="exampleSelectGender" [(ngModel)]="hymn.language" name="language">
+                <option></option>
+                <option [attr.selected]="hymn.language == 'english' ? 'selected' : null">English</option>
+                <option [attr.selected]="hymn.language == 'yoruba' ? 'selected' : null">Yoruba</option>
+              </select>
+            </div>
+            <div>
+              <span>Verses</span>
+              <div style="float:right;"><button class="btn btn-info btn-sm" (click)="addVerse()"> Add Verse</button></div>
+            </div>
+            <hr />
+            <div class="form-group" *ngFor="let verse of hymn.verses; let i = index">
+              <div> <label for="verse">Verse {{ i+1 }}</label> <span style="float:right;"><button _ngcontent-iuh-c123=""
+                    type="button" class="btn btn-danger btn-rounded btn-icon btn-sm" (click)="deleteVerse(verse)"><i
+                      _ngcontent-iuh-c123="" class="mdi mdi-delete"></i></button></span></div>
+              <quill-editor placeholder="Enter Text" [styles]="{height:'200px'}" [(ngModel)]="verse.content"
+                name="content{{ i }}">
+              </quill-editor>
+            </div>
+            <div>
+              <button type="submit" class="btn btn-gradient-primary mr-2" (click)="submit()">Submit</button>
+              <button class="btn btn-light" (click)="back()">Cancel</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  
+  </div>

@@ -19,9 +19,12 @@ import { SpinnerComponent } from './shared/spinner/spinner.component';
 import { ContentAnimateDirective } from './shared/directives/content-animate.directive';
 import { TodoListComponent } from './apps/todo-list/todo-list.component';
 import { AuthGuardService } from './services/auth-guard.service';
+import { QuillModule } from 'ngx-quill'
 import { AuthService } from './services/auth.service';
 import { HttpService } from './services/http.service';
 import { UserService } from './services/user.service';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -43,7 +46,10 @@ import { UserService } from './services/user.service';
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
-    ChartsModule
+    NgxSpinnerModule,
+    ChartsModule,
+        QuillModule.forRoot(),
+        ToastrModule.forRoot(),
   ],
   providers: [ThemeService, AuthGuardService, AuthService, HttpService, UserService],
   bootstrap: [AppComponent]

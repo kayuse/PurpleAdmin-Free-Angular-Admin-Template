@@ -1,6 +1,4 @@
-import { ThrowStmt } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
@@ -8,14 +6,13 @@ import { Hymn } from 'src/app/model/hymn.model';
 import { Verse } from 'src/app/model/verse.model';
 import { HymnService } from 'src/app/services/hymn.service';
 
-
-
 @Component({
-  selector: 'app-hymnedit',
-  templateUrl: './hymnedit.component.html',
-  styleUrls: ['./hymnedit.component.scss']
+  selector: 'app-hymn-new',
+  templateUrl: './hymn-new.component.html',
+  styleUrls: ['./hymn-new.component.scss']
 })
-export class HymneditComponent implements OnInit {
+export class HymnNewComponent implements OnInit {
+
   private id: number = null
   public showError: boolean = false
   public errors: Array<string> = []
@@ -26,14 +23,12 @@ export class HymneditComponent implements OnInit {
   public chorus: string = ""
   constructor(private activatedRoute: ActivatedRoute, private hymnService: HymnService,
     private spinner: NgxSpinnerService, private toastr: ToastrService, private router: Router) {
-    this.hymn = {} as Hymn
+    this.hymn = {
+      verses: []
+    } as Hymn
   }
 
   ngOnInit(): void {
-    this.activatedRoute.params.subscribe(params => {
-      this.id = params['id']
-      this.getHymn()
-    })
   }
   addVerse() {
     let verse = {
@@ -51,9 +46,10 @@ export class HymneditComponent implements OnInit {
         this.spinner.hide()
         return;
       }
-      let result = await this.hymnService.edit(this.hymn)
-      this.toastr.success('Hymn Editted Successfully')
+      let result = await this.hymnService.new(this.hymn)
+      this.toastr.success('Hymn Added Successfully')
       this.spinner.hide()
+      this.back()
     } catch (e) {
       this.errors.push('There was an error in edditting your hymn please try again')
       this.spinner.hide()
@@ -69,6 +65,9 @@ export class HymneditComponent implements OnInit {
     }
     if (this.hymn.chorus == '') {
       this.errors.push('Chorus cannot be empty')
+    }
+    if (this.hymn.language == '') {
+      this.errors.push('Hymn Cannot be empty')
     }
     if (this.hymn.extra == '') {
       this.errors.push('Extra cannot be empty')

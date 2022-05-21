@@ -1,0 +1,109 @@
+<div class="page-header">
+    <h3 class="page-title">
+      Hymns
+    </h3>
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="javascript:;">Hymns</a></li>
+        <li class="breadcrumb-item active" aria-current="page">All</li>
+      </ol>
+    </nav>
+  </div>
+  <div class="row">
+    <div class="col-lg-6 grid-margin" style="margin: auto;">
+      <div class="form-group">
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Search for Hymns" aria-label="Search for Hymns"
+            [(ngModel)]="content">
+          <div class="input-group-append">
+            <button class="btn btn-lg btn-info search-btn" type="button" (click)="search()">Search</button>
+          </div>
+        </div>
+        <div class="mt-2 ml-4">
+          <div (click)="changeFilter('verses')" _ngcontent-sqh-c113=""
+            [className]="filterVerses == true ? 'badge badge-pill badge-primary' : 'badge badge-pill badge-outline-primary'">
+            Verses</div> &nbsp;
+          <div (click)="changeFilter('number')" _ngcontent-sqh-c113=""
+            [className]="filterNumber == true ? 'badge badge-pill badge-info' : 'badge badge-pill badge-outline-info'">
+            Number</div> &nbsp;
+          <div (click)="changeFilter('chorus')" _ngcontent-sqh-c113=""
+            [className]="filterChorus == true ? 'badge badge-pill badge-danger' : 'badge badge-pill badge-outline-danger'">
+            Chorus</div> &nbsp;
+          <div (click)="changeFilter('title')" _ngcontent-sqh-c113=""
+            [className]="filterTitle == true ? 'badge badge-pill badge-success' : 'badge badge-pill badge-outline-success'">
+            Title</div> &nbsp;
+          <div (click)="changeFilter('yoruba')" _ngcontent-sqh-c113=""
+            [className]="filterYoruba == true ? 'badge badge-pill badge-info' : 'badge badge-pill badge-outline-info'">
+            Yoruba</div> &nbsp;
+          <div (click)="changeFilter('english')" _ngcontent-sqh-c113=""
+            [className]="filterEnglish == true ? 'badge badge-pill badge-primary' : 'badge badge-pill badge-outline-primary'">
+            English</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row" >
+    <div class="col-lg-12 grid-margin" style="float:right">
+      <a _ngcontent-edl-c116="" type="button" class="btn btn-outline-primary btn-fw btn-sm" [routerLink]="'/hymns/new'">New Hymn</a>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-6 grid-margin stretch-card" *ngFor="let hymn of filteredHymns">
+      <div class="card">
+        <div class="card-body">
+          <h1>Hymn Number {{hymn.number}}, {{hymn.language}}</h1>
+          <h2 class="card-title">{{hymn.title}}</h2>
+          <p class="card-description">{{hymn.extra}}</p>
+          <div>
+          <button _ngcontent-xwe-c117="" type="button" class="btn btn-sm btn-gradient-dark btn-fw"  (click)="openEditPage(hymn)"><i _ngcontent-emt-c115=""
+            class="mdi mdi-table-edit"></i> Edit</button>
+          </div>
+          <div class="mt-4">
+            <ngb-accordion [closeOthers]="true" activeIds="collapse-1" *ngIf="hymn.chorus != null && hymn.chorus != ''">
+              <ngb-panel id="collapse-{{hymn.id+1}}" title="Chorus">
+                <ng-template ngbPanelContent>
+                  <div class="row">
+                    <div class="col-12" [innerHTML]="hymn.chorus">
+                    </div>
+                  </div>
+                </ng-template>
+              </ngb-panel>
+            </ngb-accordion>
+            <ngb-accordion [closeOthers]="true" activeIds="collapse-1">
+              <ngb-panel id="collapse-{{i+1}}" title="Verse {{verse.number}}"
+                *ngFor="let verse of hymn.verses; let i = index">
+                <ng-template ngbPanelContent>
+                  <div class="row">
+                    <div class="col-12" [innerHTML]="verse.content">
+                    </div>
+                  </div>
+                </ng-template>
+              </ngb-panel>
+              <!-- <ngb-panel id="collapse-2" title="I can’t sign in to my account">
+                  <ng-template ngbPanelContent>
+                    If while signing in to your account you see an error message, you can do the following
+                    <ol class="pl-3 mt-4">
+                      <li>Check your network connection and try again</li>
+                      <li>Make sure your account credentials are correct while signing in</li>
+                      <li>Check whether your account is accessible in your region</li>
+                    </ol>
+                    <br>
+                    <p class="text-success">
+                      <i class="mdi mdi-alert-octagon mr-2"></i>If the problem persists, you can contact our support.
+                    </p>
+                  </ng-template>
+                </ngb-panel>
+                <ngb-panel id="collapse-3" title="Can I add money to the wallet?">
+                  <ng-template ngbPanelContent>
+                    You can add money to the wallet for any future transaction from your bank account using net-banking, or credit/debit card transaction. The money in the wallet can be used for an easier and faster transaction.                
+                  </ng-template>
+                </ngb-panel> -->
+            </ngb-accordion>
+          </div>
+          <div style="float: right;">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
