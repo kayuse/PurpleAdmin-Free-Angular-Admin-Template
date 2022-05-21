@@ -34,7 +34,7 @@ export class HymneditComponent implements OnInit {
     this.activatedRoute.params.subscribe(params => {
       this.id = params['id']
       this.getHymn()
-
+      
     })
   }
   addVerse() {

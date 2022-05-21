@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  baseUrl: 'https://ecwamedia.ilanaa.co/api/'
+  baseUrl: 'http://localhost:8000/api/'
 };

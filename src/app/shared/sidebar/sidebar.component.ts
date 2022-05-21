@@ -10,7 +10,7 @@ import { UserService } from 'src/app/services/user.service';
 export class SidebarComponent implements OnInit {
   public uiBasicCollapsed = false;
   public samplePagesCollapsed = false;
-  private user : User
+  public user : User
   
   constructor(private userService : UserService) { }
 
