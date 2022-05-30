@@ -1,3 +1,5 @@
+#!/bin/bash
+
 #stage 1
 FROM node:12.22.12 as node
 WORKDIR /app
